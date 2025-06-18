@@ -20,9 +20,11 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
 const boardRoutes = require('./routes/boardRoutes')
+const cardRoutes = require('./routes/cardRoutes')
 
 app.use(express.json());
 app.use('/boards', boardRoutes);
+app.use('/cards', cardRoutes);
 
 app.get('/', (req, res)=>{
     res.send("welcome to kudos board");
