@@ -20,7 +20,7 @@ model Board {
   category  String
   author    String?
   time      DateTime  @default(now())
-  image     String    @default("https://picsum.photos/400/400")
+  image     String    @default("https://picsum.photos/200/300")
   cards     Card[]    @relation("BoardToCards")
 }
 

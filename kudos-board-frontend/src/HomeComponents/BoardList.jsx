@@ -1,30 +1,52 @@
+import { useState, useEffect, useCallback} from 'react'
+
 import BoardCard from "./BoardCard";
+import CreateModal from './CreateModal';
 
-const BoardList = ({sortMetric}) => {
-    const boards = [] //placeholder boards
-    if (sortMetric === 'celebration'){
-        //Query for boards w celebration
-    } else if (sortMetric === 'thanks'){
-
-    } else if (sortMetric === 'inspiration'){
-
-    } else {
-        //get all boards
-        if (sortMetric === 'recent'){ //sort by recency
-            boards.sort((a,b)=>{
-                return b.date - a.date;
-            })
+const BoardList = ({sortMetric, searchTerm}) => {
+    const [boards, setBoards] = useState(null);
+    const [deleted, setDeleted] = useState(false);
+    const [createModal, setCreateModal] = useState(false);
+    const [created, setCreated] = useState(false);
+    
+    const fetchBoards = useCallback(async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/boards?sort=${sortMetric}&search=${searchTerm}`);
+            if (!response){
+                throw new Error('failed to fetch boards');
+            }
+            const responseJSON = await response.json();
+            setBoards(responseJSON);
+        } catch (error){
+            console.error(error);
         }
-    }
-        
+    }, [sortMetric, searchTerm]);
+
+    useEffect(()=>{
+        fetchBoards();
+        console.log('fetch boards');
+    }, [fetchBoards, deleted, created]);
+    
+
+
 
     return (
         <div className='board-container'>
-            {boards.map((board)=>{
+            <button className='create-board' onClick={()=>setCreateModal(true)}>Create Board</button>
+            {boards?.map((board)=>{
                 return(
-                    <BoardCard />
+                    <BoardCard 
+                        id={board.board_id}
+                        // TODO: fix image image={`https://picsum.photos/id/${Math.floor(Math.random()*100)}/200/300`}
+                        image={board.image}
+                        title={board.title}
+                        category={board.category}
+                        key={board.board_id}
+                        setDeleted={setDeleted}
+                    />
                 )
             })}
+            {createModal && <CreateModal setModalOpen={setCreateModal} setCreateRender={setCreated}/>}
         </div>
     )
 }

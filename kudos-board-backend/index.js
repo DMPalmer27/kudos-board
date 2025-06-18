@@ -17,12 +17,14 @@ also, define routes more specific to less specific
 
 
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const PORT = process.env.PORT || 3000
 const boardRoutes = require('./routes/boardRoutes')
 const cardRoutes = require('./routes/cardRoutes')
 
 app.use(express.json());
+app.use(cors());
 app.use('/boards', boardRoutes);
 app.use('/cards', cardRoutes);
 

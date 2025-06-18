@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import ControlBar from "./ControlBar"
 import BoardList from './BoardList'
-import Board from '../BoardComponents/Board'
 
 
 const Home = () => {
@@ -11,7 +10,7 @@ const Home = () => {
     return (
         <div className='home'>
             <ControlBar onSearchSubmit={setSearchTerm} onSortChange={setSortMetric}/>
-            <BoardList sortMetric={sortMetric}/>
+            <BoardList sortMetric={sortMetric} searchTerm={searchTerm}/>
         </div>
     )
 }

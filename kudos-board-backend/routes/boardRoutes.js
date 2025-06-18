@@ -9,18 +9,21 @@ const prisma = new PrismaClient()
     Retrieve all boards for the main page (can add search term and sort metric)
 */
 router.get('/', async (req, res)=>{
-    const { search, category, recent } = req.query;
+    const { search, sort } = req.query;
     const filters = {};
+    let orderBy = {};
     if (search){
         filters.title = {
             contains: search,
             mode: "insensitive"
         };
     }
-    if (category){
-        filters.category = category;
+    if (sort === 'all' || sort === 'recent'){
+        orderBy = sort === 'recent' ? {time: 'desc'} : {}
     }
-    const orderBy = recent === 'true' ? {time: 'desc'} : {}
+    else if (sort){
+        filters.category = sort;
+    }
     try {
         const boards = await prisma.Board.findMany({
             where: filters,
