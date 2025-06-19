@@ -24,7 +24,6 @@ const BoardList = ({sortMetric, searchTerm}) => {
 
     useEffect(()=>{
         fetchBoards();
-        console.log('fetch boards');
     }, [fetchBoards, deleted, created]);
     
 

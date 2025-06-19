@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route , Link} from 'react-router-dom'
 import Home from './HomeComponents/Home'
 import Board from './BoardComponents/Board'
 import './App.css'
@@ -9,8 +9,10 @@ function App() {
 
   return (
     <div className='App'>
-      <header>
-        <h1>Kudos Board</h1>
+      <header> 
+        <Link to='/'>
+          <h1>Kudos Board</h1>
+        </Link>
       </header>
       <Routes>
         <Route path="/" element={<Home/>}/>
