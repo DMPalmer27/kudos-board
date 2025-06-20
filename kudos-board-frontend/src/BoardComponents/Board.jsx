@@ -38,8 +38,25 @@ const Board = () => {
                 <div className='board'>
                     <h1>{board.title} </h1>
                     <button className='create-card' onClick={()=>setCreateModal(true)}>Create Card</button>
-                    <div className='cards-container'>
-                        {board.cards.length !== 0 ? board.cards.map((card)=>{
+                    <div className='cards-container' id='pinned'>
+                        {board.cards.filter(card=>card.pinned===true).map((card)=>{
+                            return (
+                                <CardCard
+                                    id={card.card_id}
+                                    message={card.message}
+                                    gif={card.gif}
+                                    author={card.author}
+                                    pinned={card.pinned}
+                                    votes={card.votes}
+                                    key={card.card_id}
+                                    setChanged={setChanged}
+                                    setShowComments={setCommentModal}
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className='cards-container' id='unpinned'>
+                        {board.cards.length !== 0 ? board.cards.filter(card=>card.pinned===false).map((card)=>{
                                 return (
                                     <CardCard
                                         id={card.card_id}
