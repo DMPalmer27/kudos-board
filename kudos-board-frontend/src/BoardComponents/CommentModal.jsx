@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Gif } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
@@ -12,6 +12,7 @@ const CommentModal = ({id, setModalOpen}) => {
     const [gifData, setGifData] = useState(null);
     const [changed, setChanged] = useState(false);
     const [showCreate, setShowCreate] = useState(false);
+    const overlayRef = useRef(null);
 
     const gf = new GiphyFetch(apiKey);
 
@@ -47,9 +48,15 @@ const CommentModal = ({id, setModalOpen}) => {
         }
     },[card])
 
+    const handleOverlayClick = (e) => {
+        if (e.target === overlayRef.current){
+            setModalOpen('');
+        }
+    }
+
     return (
-        <div className="modal-overlay">
-            <div className="modal-container">
+        <div className="modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
+            <div className="modal" id="comment-modal">
                 {!card ? <h3>Card {id} loading...</h3> :
                     <div className='card'>
                         <h2>{card.message}</h2>
@@ -71,7 +78,6 @@ const CommentModal = ({id, setModalOpen}) => {
                         </div>
                     </div>
                 }
-                <button className='close-btn' onClick={()=>setModalOpen('')}>Close</button>
             </div>
         </div>
     )

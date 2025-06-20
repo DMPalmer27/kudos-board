@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import CardCard from './CardCard';
 import CreateModal from './CreateModal';
 import CommentModal from './CommentModal';
+import './Board.css'
 
 const apiKey = import.meta.env.GIPHY_API_KEY;
 
@@ -35,10 +36,10 @@ const Board = () => {
         <div className='board-page'>
             {!board ? <h1>Board {id} loading...</h1> : 
                 <div className='board'>
-                    <h2>{board.title} </h2>
+                    <h1>{board.title} </h1>
                     <button className='create-card' onClick={()=>setCreateModal(true)}>Create Card</button>
                     <div className='cards-container'>
-                        {board.cards ? board.cards.map((card)=>{
+                        {board.cards.length !== 0 ? board.cards.map((card)=>{
                                 return (
                                     <CardCard
                                         id={card.card_id}
@@ -53,7 +54,7 @@ const Board = () => {
                                     />
                                 )
                             }) : 
-                            <h3>Board {id} has no cards, add one!</h3>
+                            <h3>Board has no cards, add one!</h3>
                         }
                     </div>
                     {createModal && <CreateModal setModalOpen={setCreateModal} setChanged={setChanged} boardID={id}/>}
