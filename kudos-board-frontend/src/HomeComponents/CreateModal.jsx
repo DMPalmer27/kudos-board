@@ -12,7 +12,7 @@ const CreateModal = ({setModalOpen, setCreateRender}) => {
 
     const createBoard = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/boards`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/boards`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

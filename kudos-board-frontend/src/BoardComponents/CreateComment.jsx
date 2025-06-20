@@ -6,7 +6,7 @@ const CreateComment = ({setShowCreate, setChanged, cardID}) => {
 
     const create = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/cards/${cardID}/comments`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/cards/${cardID}/comments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

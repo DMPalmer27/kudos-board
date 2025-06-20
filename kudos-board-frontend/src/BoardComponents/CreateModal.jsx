@@ -21,7 +21,7 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
 
     const createCard = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/boards/${boardID}/cards`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/boards/${boardID}/cards`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

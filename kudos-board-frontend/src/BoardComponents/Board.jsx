@@ -16,7 +16,7 @@ const Board = () => {
 
     const fetchBoard = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/boards/${id}`);
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/boards/${id}`);
             if (!response.ok){
                 throw new Error(`failed to fetch board ${id}`);
             }

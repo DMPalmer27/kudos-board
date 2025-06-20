@@ -30,7 +30,7 @@ const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowC
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/cards/${id}`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/cards/${id}`, {
                 method: "DELETE"
             });
             if (!response.ok){
@@ -45,7 +45,7 @@ const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowC
     const handlePin = async() => {
         try {
             const newPin = !pinned;
-            const response = await fetch(`http://localhost:3000/cards/${id}`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/cards/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -65,7 +65,7 @@ const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowC
 
     const handleUpvote = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/cards/${id}`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/cards/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

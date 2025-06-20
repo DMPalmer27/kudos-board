@@ -7,7 +7,7 @@ const BoardCard = ({id, image, title, category, setDeleted}) => {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/boards/${id}`, {
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/boards/${id}`, {
                 method: "DELETE"
             });
             if (!response.ok){

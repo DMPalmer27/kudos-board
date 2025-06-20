@@ -13,7 +13,7 @@ const BoardList = ({sortMetric, searchTerm}) => {
     
     const fetchBoards = useCallback(async () => {
         try {
-            const response = await fetch(`http://localhost:3000/boards?sort=${sortMetric}&search=${searchTerm}`);
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/boards?sort=${sortMetric}&search=${searchTerm}`);
             if (!response){
                 throw new Error('failed to fetch boards');
             }

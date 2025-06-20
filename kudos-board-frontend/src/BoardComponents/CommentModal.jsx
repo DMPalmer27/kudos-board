@@ -20,7 +20,7 @@ const CommentModal = ({id, setModalOpen}) => {
 
     const fetchCard = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/cards/${id}`);
+            const response = await fetch(`https://kudos-board-nyto.onrender.com/cards/${id}`);
             if (!response || !response.ok){
                 throw new Error(`failed to fetch carrd ${id}`);
             }
