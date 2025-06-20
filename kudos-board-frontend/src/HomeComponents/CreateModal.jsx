@@ -19,7 +19,7 @@ const CreateModal = ({setModalOpen, setCreateRender}) => {
                 })
             })
             if (!response.ok){
-                throw new Error('failed to create card');
+                throw new Error('failed to create board');
             }
             setCreateRender((created)=>!created)
         } catch (error){
