@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
@@ -13,6 +13,7 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
     const [showGifGrid, setShowGifGrid] = useState(false);
     const [gif, setGif] = useState('');
     const [author, setAuthor] = useState('');
+    const overlayRef = useRef(null);
 
     const gf = new GiphyFetch(apiKey);
 
@@ -48,9 +49,6 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
         createCard();
         setModalOpen(false);
     }
-    const handleClose = () => {
-        setModalOpen(false);
-    }
 
     const fetchGifs = () => gf.search(gifSearch, {limit: 9});
     
@@ -58,8 +56,14 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
         setShowGifGrid(true);
     }
 
+    const handleOverlayClick = (e) => {
+        if (e.target === overlayRef.current){
+            setModalOpen(false);
+        }
+    }
+
     return (
-        <div className='modal-overlay'>
+        <div className='modal-overlay' ref={overlayRef} onClick={handleOverlayClick}>
             <div className='modal'>
                 <h1>Create New Card</h1>
                 <form className='create-form' onSubmit={handleSubmit}>
@@ -75,7 +79,6 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
                     <input type='text' value={author} onChange={(e)=>setAuthor(e.target.value)} placeholder='Optional' />
                     <button type='submit'>Create Card</button>
                 </form>
-                <button onClick={handleClose}>Close</button>
             </div>
         </div>
     )

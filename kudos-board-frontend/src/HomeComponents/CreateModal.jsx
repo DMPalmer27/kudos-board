@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+
+import './CreateModal.css'
 
 const CreateModal = ({setModalOpen, setCreateRender}) => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [author, setAuthor] = useState('');
+    const overlayRef = useRef(null);
 
     const createBoard = async () => {
         try {
@@ -30,32 +33,33 @@ const CreateModal = ({setModalOpen, setCreateRender}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         createBoard();
-        handleClose();
-    }
-
-    const handleClose = () => {
         setModalOpen(false);
     }
 
+    const handleOverlayClick = (e) => {
+        if (e.target === overlayRef.current){
+            setModalOpen(false);
+        }
+    }
+
     return (
-        <div className="modal-overlay">
+        <div className="modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
             <div className="modal">
                 <h1>Create New Board</h1>
                 <form className="create-form" onSubmit={handleSubmit}>
-                    <p>Title: </p>
+                    <h3>Title: </h3>
                     <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} required/>
-                    <p>Category: </p>
+                    <h3>Category: </h3>
                     <select className="category-selection" value={category} onChange={(e)=>setCategory(e.target.value)} required>
                         <option value=''>Select a category...</option>
                         <option value='celebration'>Celebration</option>
                         <option value='thanks'>Thank You!</option>
                         <option value='inspiration'>Inspiration</option>
                     </select>
-                    <p>Author:</p>
+                    <h3>Author:</h3>
                     <input type='text' value={author} onChange={(e)=>setAuthor(e.target.value)}/>
                     <button type='submit'>Create Board</button>
                 </form>
-                <button className='close-btn' onClick={handleClose}>Close</button>
             </div>
         </div>
     )

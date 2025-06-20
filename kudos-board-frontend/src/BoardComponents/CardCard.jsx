@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { Gif } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
+import './CardCard.css'
+
 
 const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
 
@@ -80,10 +82,10 @@ const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowC
     }
 
     return (
-        <div className='card'>
-            <h5>{message}</h5>
-            {gifData && <Gif gif={gifData} width={300} noLink hideAttribution/> }
-            <p>{author}</p>
+        <div className='card-card'>
+            <h2>{message}</h2>
+            {gifData && <Gif gif={gifData} width={300} borderRadius={7} noLink hideAttribution/> }
+            <h4>{author}</h4>
             <div className='action-btns'>
                 <button className='upvote' onClick={handleUpvote}>Upvote {shownVotes}</button>
                 <button className='pin' onClick={handlePin}>{pinned ? 'Pinned' : 'Unpinned' }</button>

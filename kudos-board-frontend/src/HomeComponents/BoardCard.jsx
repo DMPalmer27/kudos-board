@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import './BoardCard.css'
 
 const BoardCard = ({id, image, title, category, setDeleted}) => {
 
@@ -23,12 +24,12 @@ const BoardCard = ({id, image, title, category, setDeleted}) => {
             <h3>{title}</h3>
             <p>{category}</p>
             <div className='board-btns'>
-                <button className='view-btn'>
+                <button className='btn'>
                     <Link to={`/boards/${id}`}>
                     View Board
                     </Link>
                 </button>
-                <button className='del-btn' onClick={handleDelete}>Delete Board</button>
+                <button className='btn' id='del-btn' onClick={handleDelete}>Delete Board</button>
             </div>
         </div>
     )

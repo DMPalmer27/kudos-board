@@ -1,0 +1,11 @@
+.board-card {
+    border: 5px solid lightblue;
+    border-radius: 7%;
+    padding: 7px;
+    margin: 10px;
+}
+
+.board-image {
+    border-radius: 7%;
+}
+
