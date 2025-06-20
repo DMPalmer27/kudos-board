@@ -34,6 +34,7 @@ model Card {
   board_id  Int
   board     Board   @relation("BoardToCards", fields: [board_id], references: [board_id], onDelete: Cascade)
   comments  Comment[] @relation("CardToComments")
+  pin_time  DateTime  @default(now())
 }
 
 model Comment {
