@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback} from 'react'
 import BoardCard from "./BoardCard";
 import CreateModal from './CreateModal';
 
+import './BoardList.css'
+
 const BoardList = ({sortMetric, searchTerm}) => {
     const [boards, setBoards] = useState(null);
     const [deleted, setDeleted] = useState(false);

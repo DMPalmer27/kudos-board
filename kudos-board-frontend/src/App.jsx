@@ -19,7 +19,7 @@ function App() {
         <Route path="/boards/:id" element={<Board/>}/>
       </Routes>
       <footer>
-        <p>Footer</p>
+        <h3>Daniel's Kudos Board</h3>
       </footer>
     </div>
   )
