@@ -1,5 +1,15 @@
-.card-card {
+.light-card {
     border: 5px solid lightblue;
+    border-radius: 7%;
+    padding: 7px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dark-card {
+    border: 5px solid #A70C4A;
     border-radius: 7%;
     padding: 7px;
     margin: 10px;

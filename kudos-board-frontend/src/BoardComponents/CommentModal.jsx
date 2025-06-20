@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Gif } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
+import { useTheme } from '../ThemeContext';
 
 import Comment from './Comment';
 import CreateComment from './CreateComment';
@@ -13,6 +14,7 @@ const CommentModal = ({id, setModalOpen}) => {
     const [changed, setChanged] = useState(false);
     const [showCreate, setShowCreate] = useState(false);
     const overlayRef = useRef(null);
+    const {theme} = useTheme();
 
     const gf = new GiphyFetch(apiKey);
 
@@ -55,8 +57,8 @@ const CommentModal = ({id, setModalOpen}) => {
     }
 
     return (
-        <div className="modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
-            <div className="modal" id="comment-modal">
+        <div className={theme==='light'?'light-modal-overlay':'dark-modal-overlay'} ref={overlayRef} onClick={handleOverlayClick}>
+            <div className={theme==='light'?'light-modal':'dark-modal'} id="comment-modal">
                 {!card ? <h3>Card {id} loading...</h3> :
                     <div className='card'>
                         <h2>{card.message}</h2>

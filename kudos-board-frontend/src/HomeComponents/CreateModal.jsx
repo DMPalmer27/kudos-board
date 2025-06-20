@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useTheme } from '../ThemeContext';
 
 import './CreateModal.css'
 
@@ -7,6 +8,7 @@ const CreateModal = ({setModalOpen, setCreateRender}) => {
     const [category, setCategory] = useState('');
     const [author, setAuthor] = useState('');
     const overlayRef = useRef(null);
+    const {theme} = useTheme();
 
     const createBoard = async () => {
         try {
@@ -43,8 +45,8 @@ const CreateModal = ({setModalOpen, setCreateRender}) => {
     }
 
     return (
-        <div className="modal-overlay" ref={overlayRef} onClick={handleOverlayClick}>
-            <div className="modal">
+        <div className={theme==='light'?'light-modal-overlay':'dark-modal-overlay'}ref={overlayRef} onClick={handleOverlayClick}>
+            <div className={theme==='light'?'light-modal':'dark-modal'}>
                 <h1>Create New Board</h1>
                 <form className="create-form" onSubmit={handleSubmit}>
                     <h3>Title: </h3>

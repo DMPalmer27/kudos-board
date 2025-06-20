@@ -1,4 +1,4 @@
-.comment-container {
+.light-comment-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -9,6 +9,17 @@
     padding: 10px;
 }
 
-.comment-container p {
+.dark-comment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #A70C4A;
+    border-radius: 7%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.author {
     margin: 10px;
 }
