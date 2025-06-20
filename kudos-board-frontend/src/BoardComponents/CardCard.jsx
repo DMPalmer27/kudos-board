@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { Gif } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
+import { useTheme } from '../ThemeContext'
 
 import './CardCard.css'
 
@@ -11,6 +12,7 @@ const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
 const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowComments}) => {
     const [gifData, setGifData] = useState(null);
     const [shownVotes, setShownVotes] = useState(votes);
+    const {theme} = useTheme();
 
     const gf = new GiphyFetch(apiKey); 
 
@@ -82,7 +84,7 @@ const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowC
     }
 
     return (
-        <div className='card-card'>
+        <div className={theme==='light'?'light-card':'dark-card'}>
             <h2>{message}</h2>
             {gifData && <Gif gif={gifData} width={300} borderRadius={7} noLink hideAttribution/> }
             <h4>{author}</h4>

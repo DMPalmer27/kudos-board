@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
+import { useTheme } from '../ThemeContext';
 
 
 const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
@@ -14,6 +15,7 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
     const [gif, setGif] = useState('');
     const [author, setAuthor] = useState('');
     const overlayRef = useRef(null);
+    const {theme} = useTheme();
 
     const gf = new GiphyFetch(apiKey);
 
@@ -63,8 +65,8 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
     }
 
     return (
-        <div className='modal-overlay' ref={overlayRef} onClick={handleOverlayClick}>
-            <div className='modal'>
+        <div className={theme==='light'?'light-modal-overlay':'dark-modal-overlay'} ref={overlayRef} onClick={handleOverlayClick}>
+            <div className={theme==='light'?'light-modal':'dark-modal'}>
                 <h1>Create New Card</h1>
                 <form className='create-form' onSubmit={handleSubmit}>
                     <p>Message:</p>

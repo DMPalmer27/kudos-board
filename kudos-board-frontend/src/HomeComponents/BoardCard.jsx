@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import './BoardCard.css'
+import { useTheme } from '../ThemeContext'
 
 const BoardCard = ({id, image, title, category, setDeleted}) => {
+    const {theme} = useTheme();
 
     const handleDelete = async () => {
         try {
@@ -19,7 +21,7 @@ const BoardCard = ({id, image, title, category, setDeleted}) => {
 
     
     return (
-        <div className='board-card'>
+        <div className={theme==='light'?'light-board-card':'dark-board-card'}>
             <img className='board-image' src={image}/>
             <h3>{title}</h3>
             <p>{category}</p>
