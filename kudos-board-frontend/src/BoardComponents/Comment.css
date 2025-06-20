@@ -1,0 +1,14 @@
+.comment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid lightblue;
+    border-radius: 7%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.comment-container p {
+    margin: 10px;
+}
