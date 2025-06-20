@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useParams } from "react-router-dom"
 import CardCard from './CardCard';
 import CreateModal from './CreateModal';
+import CommentModal from './CommentModal';
 
 const apiKey = import.meta.env.GIPHY_API_KEY;
 
@@ -9,6 +10,7 @@ const Board = () => {
     const [board, setBoard] = useState(null);
     const [changed, setChanged] = useState(false);
     const [createModal, setCreateModal] = useState(false);
+    const [commentModal, setCommentModal] = useState(false);
     const { id } = useParams();
 
     const fetchBoard = async () => {
@@ -33,7 +35,7 @@ const Board = () => {
         <div className='board-page'>
             {!board ? <h1>Board {id} loading...</h1> : 
                 <div className='board'>
-                    <h2>{board ? board.title : `board ${id} loading`} </h2>
+                    <h2>{board.title} </h2>
                     <button className='create-card' onClick={()=>setCreateModal(true)}>Create Card</button>
                     <div className='cards-container'>
                         {board.cards ? board.cards.map((card)=>{
@@ -47,6 +49,7 @@ const Board = () => {
                                         votes={card.votes}
                                         key={card.card_id}
                                         setChanged={setChanged}
+                                        setShowComments={setCommentModal}
                                     />
                                 )
                             }) : 
@@ -54,6 +57,7 @@ const Board = () => {
                         }
                     </div>
                     {createModal && <CreateModal setModalOpen={setCreateModal} setChanged={setChanged} boardID={id}/>}
+                    {commentModal && <CommentModal id={commentModal} setModalOpen={setCommentModal}/>}
                 </div>
             }
         </div>

@@ -63,7 +63,7 @@ const CreateModal = ({setModalOpen, setChanged, boardID}) => {
             <div className='modal'>
                 <h1>Create New Card</h1>
                 <form className='create-form' onSubmit={handleSubmit}>
-                    <p>Title:</p>
+                    <p>Message:</p>
                     <input type='text' value={message} onChange={(e)=>setMessage(e.target.value)} required />
                     <p>Gif:</p>
                     <input type='text' value={gifSearch} onChange={(e)=>setGifSearch(e.target.value)} placeholder='Search Gifs...' />

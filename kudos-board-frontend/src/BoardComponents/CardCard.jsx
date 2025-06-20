@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react'
 import { Gif } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
+
 const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
 
-const CardCard = ({id, message, gif, author, pinned, votes, setChanged}) => {
+const CardCard = ({id, message, gif, author, pinned, votes, setChanged, setShowComments}) => {
     const [gifData, setGifData] = useState(null);
     const [shownVotes, setShownVotes] = useState(votes);
 
@@ -80,14 +81,16 @@ const CardCard = ({id, message, gif, author, pinned, votes, setChanged}) => {
 
     return (
         <div className='card'>
-            <p>{message}</p>
+            <h5>{message}</h5>
             {gifData && <Gif gif={gifData} width={300} noLink hideAttribution/> }
             <p>{author}</p>
-            <div className='btns'>
+            <div className='action-btns'>
                 <button className='upvote' onClick={handleUpvote}>Upvote {shownVotes}</button>
                 <button className='pin' onClick={handlePin}>{pinned ? 'Pinned' : 'Unpinned' }</button>
                 <button className='delete' onClick={handleDelete}>Delete</button>
             </div>
+            <button className="comment-btn" onClick={()=>setShowComments(id)}>Open Comments</button>
+            
         </div>
     )
 }
