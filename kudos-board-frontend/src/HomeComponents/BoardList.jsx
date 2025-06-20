@@ -32,21 +32,23 @@ const BoardList = ({sortMetric, searchTerm}) => {
 
 
     return (
-        <div className='board-container'>
+        <div>
             <button className='create-board' onClick={()=>setCreateModal(true)}>Create Board</button>
-            {boards?.map((board)=>{
-                return(
-                    <BoardCard 
-                        id={board.board_id}
-                        // TODO: fix image image={`https://picsum.photos/id/${Math.floor(Math.random()*100)}/200/300`}
-                        image={board.image}
-                        title={board.title}
-                        category={board.category}
-                        key={board.board_id}
-                        setDeleted={setDeleted}
-                    />
-                )
-            })}
+                <div className='board-container'>
+                    {boards?.map((board)=>{
+                        return(
+                            <BoardCard 
+                                id={board.board_id}
+                                // TODO: fix image image={`https://picsum.photos/id/${Math.floor(Math.random()*100)}/200/300`}
+                                image={board.image}
+                                title={board.title}
+                                category={board.category}
+                                key={board.board_id}
+                                setDeleted={setDeleted}
+                            />
+                        )
+                    })}
+                </div>
             {createModal && <CreateModal setModalOpen={setCreateModal} setCreateRender={setCreated}/>}
         </div>
     )

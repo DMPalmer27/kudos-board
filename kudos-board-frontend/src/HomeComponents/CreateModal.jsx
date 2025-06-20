@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import './CreateModal.css'
+
 const CreateModal = ({setModalOpen, setCreateRender}) => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './ControlBar.css'
 
 
 const ControlBar = ({onSearchSubmit, onSortChange}) => {
