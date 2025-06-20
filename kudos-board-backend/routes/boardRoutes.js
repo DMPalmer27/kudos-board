@@ -84,7 +84,10 @@ router.get('/:boardID', async (req, res)=>{
     try {
         const board = await prisma.Board.findUnique({
             where: {board_id: boardID},
-            include: {cards: {orderBy: {"pinned": 'desc'}}}
+            include: {cards: {orderBy:[
+                {"pinned":'desc'},
+                {"pin_time":'desc'}
+            ]}}
         })
         res.json(board)
     } catch (error){
