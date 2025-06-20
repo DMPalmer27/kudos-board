@@ -65,7 +65,7 @@ const CommentModal = ({id, setModalOpen}) => {
                         <button className='create-comment-btn' onClick={()=>setShowCreate(true)}>Create Comment</button>
                         {showCreate && <CreateComment setShowCreate={setShowCreate} setChanged={setChanged} cardID={id}/>}
                         <div className='comments-container'>
-                            {card.comments ? card.comments.map((comment)=>{
+                            {card.comments.length != 0 ? card.comments.map((comment)=>{
                                 return (
                                     <Comment
                                         message={comment.message}
